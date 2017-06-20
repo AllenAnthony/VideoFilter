@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #! coding:utf-8
-__author__ = "Anthony"
+__author__ = "Xufeng Qian & Chenghao Jia"
 
 import threading
 import numpy as np
@@ -45,11 +45,18 @@ def averageBlur(img,X,Y):# averageBlur with size X*Y
     kernel = np.ones((X, Y), np.float32) / (X * Y)
     return cv2.filter2D(resImage, -1, kernel)
 
-def normalization(img):# 归一化
+def normalization(img):# 均匀化
     resImage = copy.deepcopy(img)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     (minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
-    cv2.multiply(cv2.add(img, -minVal), 255 / (maxVal - minVal),resImage)  # Calculates the per-element scaled product of two arrays.
+
+    channels = cv2.split(resImage)  # Divides a multi-channel array into several single-channel arrays.
+    # Calculates the per-element scaled product of two arrays.
+    cv2.multiply(cv2.add(channels[0], -minVal), 255 / (maxVal - minVal), channels[0])
+    cv2.multiply(cv2.add(channels[1], -minVal), 255 / (maxVal - minVal), channels[1])
+    cv2.multiply(cv2.add(channels[2], -minVal), 255 / (maxVal - minVal), channels[2])
+    resImage = cv2.merge(channels)
+    # cv2.multiply(cv2.add(img, -minVal), 255 / (maxVal - minVal),resImage)
     return resImage
 
 def mapColor(img,COLORMAP):# color map: resImage = cv2.applyColorMap(img, cv2.COLORMAP_PINK)
