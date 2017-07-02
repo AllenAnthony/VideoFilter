@@ -153,8 +153,8 @@ class Video(threading.Thread):
 
 #######################generate edge kernel
         self.edgeKernel = np.array([[-1.,  -1.,  -1.],
-                                     [-1.,   8.,  -1.],
-                                     [-1.,  -1.,  -1.]])
+                                    [-1.,   8.,  -1.],
+                                    [-1.,  -1.,  -1.]])
 
 
 
