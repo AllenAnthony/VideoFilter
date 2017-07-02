@@ -1,3 +1,5 @@
+##this is a Video Filter program using 14 filters for multimedia course
+
 # VideoFilter
 
 直方图均衡化参考：  
