@@ -1,4 +1,4 @@
-##this is a Video Filter program using 14 filters for multimedia course
+###this is a Video Filter program using 14 filters for multimedia course  
 
 # VideoFilter
 
